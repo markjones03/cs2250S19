@@ -24,15 +24,22 @@
 // Main Function
 int main()
 {
-    int num;
+    int num1;
+    int num2;
+
     printf("Enter and integer:");
-    scanf("%d", &num);
+    scanf("%d %d", &num1, &num2);
     // test value for even or odd
-    if(num % 2 == 0)
+    if((num1 + num2) % 2 != 0)
     {
-        printf("%d is even/n", num);
+        
+        printf("%d and  %d are even and odd \n", num1, num2);
     }
-    printf("Auios amigo/n");
+    else
+    {
+        printf("%d and %d are not even and odd numbers\n", num1, num2);
+    }
+    printf("Audios amigo\n");
 
     return 0;
 }
