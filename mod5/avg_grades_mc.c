@@ -27,14 +27,13 @@
 #define MAXSTUDENTS 3
 
 // Function Prototypes
-
 // Main Function
 int main()
 {
     //task 1; calcualte the average of user values
     //task 2; validate user input for 0 to 100 only
-    //task 3; ask user how many values they need to enter
-    //task 4; if user enters a number below MINCOUNT set it MINCOUNT
+    //task 3; generate random data on  how many values they need to enter
+    //task 4; if user/random enters a number below MINCOUNT set it MINCOUNT
     //        and if user enters a value greater than MAXCOUNT, set it to MAXCOUNT
     //task 5; support multiple student entries. calculate class average.
     //task 6; display student letter grade
@@ -44,16 +43,18 @@ int main()
    int hw_count = 0;
    int student_count;
 
-   while( student_count < MAXSTUDENTS)      // loop over students
-
+    srand(time(0));     //set random SEED
+   for (student_count; student_count <= MAXSTUDENTS; student_count++);
+   {
     printf("How many hw values do you want to enter?(between %d and %d) \n",MINCOUNT, MAXCOUNT);
-    scanf("%d",&hw_count);
-
-    if(student_count < MINCOUNT)
+   //scanf("%d",&hw_count);
+    hw_count = rand() % 10;
+   }
+    if(hw_count < MINCOUNT)
     {
         printf("%d is lower than %d. Setting your entry to %d\n",hw_count, MINCOUNT, MINCOUNT);
     }
-    if (student_count > MAXCOUNT)
+    if (hw_count > MAXCOUNT)
     {
         printf("%d is greater than %d. Setting your entery to %d\n",hw_count, MAXCOUNT, MAXCOUNT);
     }
@@ -61,7 +62,10 @@ int main()
     while(grade_count < MAXCOUNT)
     {
         printf("\nEnter %d homework grade(%d - %d): ", grade_count+1,MINGRADE,MAXGRADE);
-        scanf("%f", &grade);
+       // scanf("%f", &grade);
+   grade = rand() % 150;    //get a random number between 0-150
+   grade = grade - ( rand() % 100); //subract a random 0-100 number to randomly make it negative
+
     if(grade< MINGRADE || grade > MAXGRADE)
     {
         printf("Invalid input please try again\n");
@@ -78,8 +82,9 @@ int main()
     avg = total/hw_count;
     printf("Your average is [%6.2f]\n",avg);
     student_count++;
-}  //loop over students
+
     printf("Bye\n");
+    
     return 0;
 }
 // Function Definitions
