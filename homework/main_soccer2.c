@@ -19,13 +19,14 @@
 
 // Constants
 #define NUM_PLAYERS 5
+#define MAX_RATING 9
 // Function Prototypes
 
 // Main Function
 int main()
 {
-int jerseyNum[5];
-int playerRating[5];
+int jerseyNum[NUM_PLAYERS];
+int playerRating[NUM_PLAYERS];
 int j;
 int newNum;
 int newRating;
@@ -33,15 +34,6 @@ int newJersey;
 int replaceJersey;
 char choice;
 
-   // printf("MENU\n");
-   // printf("u - Update Player rating\n");
-   // printf("a - Output players above a rating\n");
-   // printf("r - Replace player\n");
-   // printf("o - Output roster\n");
-   // printf("q - Quit\n");
-   // printf("\nChoose an option:\n");
-   // scanf("%c", &choice);
-   //
         for(j = 1; j <= NUM_PLAYERS; ++j)
     {
             printf("Enter player %d's jersey number(0-99): \n",j);
@@ -58,7 +50,8 @@ char choice;
         printf("Player %d -- Jersey number: %d, Rating: %d \n", j, jerseyNum[j],playerRating[j]);
     }
     
-
+    while( choice != 'q')
+    {
     printf("\nMENU\n");
     printf("u - Update Player rating\n");
     printf("a - Output players above a rating\n");
@@ -79,6 +72,9 @@ char choice;
         printf("Enter a jersey number: \n");
         scanf("%d", &newNum);
 
+        for(j=0; j <= NUM_PLAYERS; ++j)
+        {
+
         if( newNum == jerseyNum[j])
         {
         
@@ -87,8 +83,24 @@ char choice;
 
             playerRating[j] = newRating;
         }
-        
-    }
+        } //end for loop on menu option u - update rating
+    } // end of else if choice u - update rating
+     else if(choice == 'a')
+     {
+        printf("Enter a rating:\n");
+        scanf("%d", &newRating);
+        printf("Above %d\n", newRating);
+
+            for(j =1; j <= NUM_PLAYERS; ++j)
+            {
+                if(newRating < playerRating[j])
+                    {
+                       // printf("Above %d\n", newRating);
+                        printf("Player %d -- Jersey number: %d, Rating: %d \n", j, jerseyNum[j],playerRating[j]); 
+                    }
+            }
+     }
+
     else if(choice == 'r')
     {
         printf("Enter a jersey number:\n");
@@ -112,20 +124,14 @@ char choice;
         printf("Player %d -- Jersey number: %d, Rating: %d \n", j, jerseyNum[j],playerRating[j]);
          }
     
-    printf("MENU\n");
-    printf("u - Update Player rating\n");
-    printf("a - Output players above a rating\n");
-    printf("r - Replace player\n");
-    printf("o - Output roster\n");
-    printf("q - Quit\n");
-    printf("\nChoose an option:\n");
-    scanf("%s", &choice);
 if(choice == 'q')
     {
         printf("Good Bye\n");
         return 0;
     }
     } //end else if choice o - output roster
+
+    } //end while loop
 
 
 
