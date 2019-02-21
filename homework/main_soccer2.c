@@ -105,6 +105,9 @@ char choice;
     {
         printf("Enter a jersey number:\n");
         scanf("%d", &replaceJersey);
+
+        for(j=1; j <= NUM_PLAYERS; ++j)
+        {
         if(replaceJersey == jerseyNum[j])
             {
                 printf("Enter a new jersey number:\n");
@@ -112,8 +115,10 @@ char choice;
                 printf("Enter a rating for the new player:\n");
                 scanf("%d", &newRating);
 
+                jerseyNum[j] = newJersey;
+                playerRating[j] = newRating;
             }
-
+        }
     }
 
     else if(choice == 'o')
