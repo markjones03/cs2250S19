@@ -22,8 +22,8 @@
 // Function Prototypes
 void DisplayPosition(double x, double y);
 void DisplayOrigPosition(double* x, double* y);
-void UpdatePosition(double x, double y, double new_x, double new_y);
-
+void UpdatePosition(double* x, double* y, double new_x, double new_y);
+void ResetPosition(double* x, double* y);
 // Main Function
 int main(int argc, char* argv[])
 {
@@ -38,9 +38,11 @@ int main(int argc, char* argv[])
     y = atof(argv[2]);  // convert he second input param to double
     printf("Your current postion address is (%p, %p)(main)\n", &x, &y);
     DisplayOrigPosition(&x, &y);  // takes two addresses of type double
-    DisplayPosition(x, y);
-   // UpdatePosition(x, y, 2, 4);
-   // DisplayPostion(x, y);
+    DisplayPosition(&x, &y);
+    UpdatePosition(&x, &y, 2, 4);
+    DisplayPosition(x, y); // takes 2 address of type double
+    ResetPosition(&x, &y);  // reset values to original
+    DisplayPosition(&x, &y);
 
     return 0;
 }
@@ -51,19 +53,20 @@ int main(int argc, char* argv[])
  * ===  FUNCTION  ======================================================================
  *         Name:  UpdatePosition
  *  Description:  update point position to a new position
- *  Param:new_ x => x coordinate
- *  param:new_ y=> y coordinate
+ *  Param:new_ x => x coordinate address
+ *  * param:new_ y=> y coordinate address
  *  returns: nothing
  
  * =====================================================================================
  */
 
-void UpdatePosition(double x, double y, double new_x, double new_y)
+void UpdatePosition(double* x, double* y, double new_x, double new_y)
 {
-    DisplayPosition(x,y);
-    x = new_x;
-    y = new_y;
-    DisplayPosition(x,y);
+    printf("*****Updating Position*****\n");
+   *x = new_x;  //derefernece the pointer to update the value
+   *y = new_y;
+    printf("*****Done Updating Position*****\n");
+
     return;
 }
 
@@ -102,4 +105,22 @@ void DisplayOrigPosition(double* x, double* y)
     printf("Your current postion is (%4.2lf, %4.2lf)\n", *x, *y);
 
     return;
+}
+
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  ResetPosition
+ *  Description:  reset coordinates to original coordinates (0, 0)
+ *  Param: reset x and y coordinates
+ *  returns nothing
+ * =====================================================================================
+ *
+ */
+void ResetPosition(double* x, double* y)
+
+{
+    printf("*****Reseting Position*****\n");
+    *x = 0;
+    *y = 0;
 }
