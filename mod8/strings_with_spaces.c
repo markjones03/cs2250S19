@@ -19,10 +19,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>      //use for islower(), toupper()
 // Constants
 const int INPUT_SIZE = 50;
 // Function Prototypes
-
+void StrSpaceToHyphen(char inputStr[]);
 // Main Function
 int main(int argc, char* argv[])
 {
@@ -39,10 +40,35 @@ int main(int argc, char* argv[])
     {
         printf("%d char is [%c]\n", i, user_input[i]);
     }
-    
+    StrSpaceToHyphen(user_input);
+    printf("New String [%s]\n",user_input);
     
     return 0;
 }
 // Function Definitions
 
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  StrSpaceToHyphen
+ *  Description:  replease all spaces with hyphens and make all leters capital
+ *  *       Param:  inputStr: input string with spaces
+ * =====================================================================================
+ */
+void StrSpaceToHyphen(char inputStr[])
+{
+    for(int i = 0; i < strlen(inputStr); i++)
+    {
+        if( inputStr[i] == ' ')
+        {
+            inputStr[i] = '-';
+        }
+        else if(islower(inputStr[i]))
+        {
+            inputStr[i] = toupper(inputStr[i]);
+        }
+
+    }
+
+    return;
+}
