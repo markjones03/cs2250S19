@@ -1,0 +1,56 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:  catesian.c
+ *
+ *    Description
+ *
+ *        Version:  1.0
+ *        Created:  01/24/2019 08:39:57 AM
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  Mark Jones (), markjones7@mail.weber.edu
+ *   Organization:  WSU
+ *
+ * =====================================================================================
+ */
+#include <stdio.h>
+#include <math.h>
+
+
+
+// Constants
+const doublee PI = 3.14159;
+
+// Function Prototypes
+
+// Main Function
+int main()
+{
+
+// capture user input  for radius and the angle in degress
+
+    double radius = 0
+    double theta, x_pos, y_pos;
+
+    printf("Enter your radius:\n");
+    scanf("%lf", &radius);
+
+    printf("Enter your theta angle in degrees:\n");
+    scanf("lf", &theta);
+// convert the theta angle to radians
+    theta = (theta*PI/180.0);
+
+// calculate your cartesian coordinates
+    x_pos = radius*cos(theta);
+    y_pos = radius*sin(theta);
+    
+// print the result
+
+    printf("Your cartesian Coordinates, x = [%lf], y = [%lf]\n", x_pos, y_pos);
+    return 0;return
+}
+// Function Definitions
+
+
