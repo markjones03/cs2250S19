@@ -37,19 +37,18 @@ typedef struct Employee
 // Function Prototypes
 double CalcNet(Employee emp); //pass by value
 double CalcGross(Employee* emp); //pass by reference
+void CreateEmployee(Employee* emp);
+void CalcPay(Employee* emp);
+void DisplayEmp(const Employee* emp);
 // Main Function
 int main(int argc, char* argv[])
 {
+    Employee waldo(&waldo);
     
-    Employee waldo = {1, 7.50, 20};
-    waldo.netPay = CalcNet(waldo);  //pass by value
-    printf("Hi waldo, your net pay for %lf hours at %lf rate is %lf\n", waldo.hours, waldo.payRate, waldo.netPay);
-    
-    //set tax rate
-    waldo.taxRate = TAXRATE1;
+    CreateEmployee(&waldo);
+    CalcPay(&waldo);
+    DisplayEmp(&waldo);
 
-    waldo.grossPay = CalcGross(&waldo);     //pass by reference
-    printf("Hi waldo, your net pay for %lf hours at %lf rate is %lf\n", waldo.hours, waldo.payRate, waldo.grossPay);
     return 0;
 }
 // Function Definitions
@@ -84,4 +83,55 @@ double CalcGross(Employee* emp)
     //use te dereference operator ->
 
     return emp->payRate * emp->hours;
+}
+
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  CreateEmployee
+ *  Description:  Create Employee record
+ *  Param: employee record
+ * =====================================================================================
+ */
+void CreateEmployee(Employee* emp)
+{
+    emp->idNum = 1;
+    emp->payRate = 7.50;
+    emp->hours = 20;
+    emp->
+    return;
+}
+
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  CalcPay
+ *  Description:  Calculate the gross and net pay for employee
+ *  Param:
+ * =====================================================================================
+ */
+void CalcPay(Employee* emp)
+{
+    //emp in an adress(pointer), so if you need to pass it to function
+    //that requires a pointer, then just use the name: emp
+    //if you need to pass the VALUES, you need to derefernce the reference
+    //so use the *emp to access the values at the address
+    emp->netPay = CalcNet(*emp);
+    emp->grossPay = CalcGross(emp);
+    return;
+}
+
+
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  DisplayEmp
+ *  Description:  Display employee record
+ * =====================================================================================
+ */
+void DisplayEmp(const Employee* emp)
+{
+    printf("Hi waldo, your net pay for %lf hours at %lf rate is %lf\n", emp->hours, emp->payRate, emp->netPay);
+
+    printf("your gross pay for %lf hours at %lf rate is %lf\n", emp->hours, emp->payRate, emp->netPay);
+    return;
 }
