@@ -18,44 +18,69 @@
  */
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+
 // Constants
 
 // Function Prototypes
-void GetUserString();
 char PrintMenu();
-char FixCapitalization();
-char ReplaceExclamation();
-char ShortenSpace();
-int GetNumOfNonWSCharacters();
-int GetNumOfWords();
+//char FixCapitalization();
+//char ReplaceExclamation();
+//char ShortenSpace();
+void GetNumOfNonWSCharacters(const char* userStr);
+//int GetNumOfWords();
 
 
 // Main Function
 int main(int argc, char* argv[])
 {
-    GetUserString(char userStr);
+    char Str[500];
+    char menuOp = '-';
+
+    printf("Enter a sample text:\n");
+    fgets(Str, 500, stdin);
+    printf("You entered: %s\n",Str);
+
+    PrintMenu();
+
+   // do {
+        menuOp = PrintMenu();
+
+        if (menuOp == 'q')
+                {
+                    printf("bye!\n");
+                }
+
+        else if (menuOp == 'c')
+                {
+                   GetNumOfNonWSCharacters(Str);
+                }
+        else if (menuOp == 'w')
+                {
+                   // number of words
+                }
+        else if (menuOp == 'f')
+                {
+                   // fix capitilzation
+                }
+        else if (menuOp == 'r')
+                {
+                   // replace all !
+                }
+        else if (menuOp == 's')
+                {
+                   // shorten spaces
+                }
+        else
+                {
+                    printf("invalid entry. please try again!\n");
+                }
+   // } //while(menuOp != 'q');
+
+   // printf("bye!\n");
     return 0;
 }
 
-
-// Function Definitions
-
-/* 
- * ===  FUNCTION  ======================================================================
- *         Name:  GetUserString
- *  Description:  gather user entered string
- *  return: none
- * =====================================================================================
- */
-int GetUserString(const* char userStr)
-{
-    char userStr[200];
-    fgets(getString, 200, stdin)
-
-    printf("%s", getString);
-    return;
-
-}
 
 /* 
  * ===  FUNCTION  ======================================================================
@@ -89,8 +114,9 @@ char PrintMenu()
  *  return: number of characters
  * =====================================================================================
  */
-int GetNumOfNonWSCharacters()
+void GetNumOfNonWSCharacters(const char* userStr)
 {
+    printf("Number of non-whitespace characters: %ld\n",strlen(userStr));
 
     return;
 }
@@ -102,7 +128,7 @@ int GetNumOfNonWSCharacters()
  *  return: number of words
  * =====================================================================================
  */
-int GetNumOfWords()
+void GetNumOfWords()
 {
 return;
 }
@@ -113,7 +139,7 @@ return;
  *  Description:  change lowercase letters at beginning of sentences to uppercase ones
  * =====================================================================================
  */
-char FixCapitalization()
+void FixCapitalization()
 {
 return;
 }
@@ -125,7 +151,7 @@ return;
  *  Description:  replaces each ! with a .
  * =====================================================================================
  */
-char ReplaceExclamation()
+void ReplaceExclamation()
 {
 return;
 }
@@ -137,7 +163,7 @@ return;
  *  Description:  reaplaces all sequences of 2 or more spaces with a single space
  * =====================================================================================
  */
-char ShortenSpace()
+void ShortenSpace()
 {
 return;
 }
