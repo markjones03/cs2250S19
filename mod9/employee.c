@@ -33,22 +33,26 @@ typedef struct Employee
 #define TAXRATE1 0.10   //10%
 #define TAXRATE2 0.25   //25%
 #define TAXRATE3 0.75   //75%
-
-// Function Prototypes
+#define TOTAL 5
+//Function Prototypes
 double CalcNet(Employee emp); //pass by value
 double CalcGross(Employee* emp); //pass by reference
-void CreateEmployee(Employee* emp);
+void CreateEmployee(Employee* emp, int idNum);
 void CalcPay(Employee* emp);
 void DisplayEmp(const Employee* emp);
 // Main Function
 int main(int argc, char* argv[])
 {
-    Employee waldo(&waldo);
-    
-    CreateEmployee(&waldo);
-    CalcPay(&waldo);
-    DisplayEmp(&waldo);
-
+    Employee students[TOTAL];
+    for(int i = 0; i < TOTAL; i++)
+    {
+        // Notes: An array name "students" is the same as the address of the
+        // first number. If you need to pass one member, use the address and
+        // member index number: &students[i]
+        CreateEmployee(&students[i], i + 1);
+        CalcPay(&students[i]);
+        DisplayEmp(&students[i]);
+    }
     return 0;
 }
 // Function Definitions
@@ -93,12 +97,12 @@ double CalcGross(Employee* emp)
  *  Param: employee record
  * =====================================================================================
  */
-void CreateEmployee(Employee* emp)
+void CreateEmployee(Employee* emp, int idNum)
 {
-    emp->idNum = 1;
-    emp->payRate = 7.50;
+    emp->idNum = idNum;
+    emp->payRate = 7.50 * emp->idNum;
     emp->hours = 20;
-    emp->
+    emp->taxRate = TAXRATE1;
     return;
 }
 
@@ -130,7 +134,7 @@ void CalcPay(Employee* emp)
  */
 void DisplayEmp(const Employee* emp)
 {
-    printf("Hi waldo, your net pay for %lf hours at %lf rate is %lf\n", emp->hours, emp->payRate, emp->netPay);
+    printf("Hi [%d], your net pay for %lf hours at %lf rate is %lf\n",emp->idNum, emp->hours, emp->payRate, emp->netPay);
 
     printf("your gross pay for %lf hours at %lf rate is %lf\n", emp->hours, emp->payRate, emp->netPay);
     return;
