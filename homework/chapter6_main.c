@@ -19,16 +19,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 // Constants
 
 // Function Prototypes
 char PrintMenu();
-//char FixCapitalization();
-//char ReplaceExclamation();
+void FixCapitalization(const char* NewUserStr);
+char ReplaceExclamation(char* userStr);
 //char ShortenSpace();
 void GetNumOfNonWSCharacters(const char* userStr);
-//int GetNumOfWords();
+void GetNumOfWords(const char* userStr);
 
 
 // Main Function
@@ -43,41 +44,42 @@ int main(int argc, char* argv[])
 
     PrintMenu();
 
-   // do {
-        menuOp = PrintMenu();
 
-        if (menuOp == 'q')
-                {
-                    printf("bye!\n");
-                }
+    do {
 
-        else if (menuOp == 'c')
+       menuOp = PrintMenu();
+
+        if (menuOp == 'c')
                 {
                    GetNumOfNonWSCharacters(Str);
                 }
         else if (menuOp == 'w')
                 {
-                   // number of words
+                   GetNumOfWords(Str);
                 }
         else if (menuOp == 'f')
                 {
-                   // fix capitilzation
+                   FixCapitalization(Str);
                 }
         else if (menuOp == 'r')
                 {
-                   // replace all !
+                    ReplaceExclamation(Str);
                 }
         else if (menuOp == 's')
                 {
                    // shorten spaces
                 }
-        else
+        else if (menuOp == 'q')
+                {
+                    printf("Good Bye!\n");
+                }
+        else 
                 {
                     printf("invalid entry. please try again!\n");
                 }
-   // } //while(menuOp != 'q');
+        
+    } while(menuOp != 'q');
 
-   // printf("bye!\n");
     return 0;
 }
 
@@ -114,6 +116,7 @@ char PrintMenu()
  *  return: number of characters
  * =====================================================================================
  */
+
 void GetNumOfNonWSCharacters(const char* userStr)
 {
     printf("Number of non-whitespace characters: %ld\n",strlen(userStr));
@@ -128,8 +131,26 @@ void GetNumOfNonWSCharacters(const char* userStr)
  *  return: number of words
  * =====================================================================================
  */
-void GetNumOfWords()
+void GetNumOfWords(const char* userStr)
 {
+    int count=0, i, len;
+    char lastC;
+    len = strlen(userStr);
+        if (len > 0)
+        {
+            lastC = userStr[0];
+        }
+    for(i = 0; i <= len; i++)
+    {
+        if((userStr[i] == ' ' || userStr[i] == '\0') && lastC)
+        {
+            count++;
+        }
+        lastC = userStr[i];
+    }
+
+    printf("Number of words: %ld\n",strlen(userStr));
+
 return;
 }
 
@@ -139,9 +160,21 @@ return;
  *  Description:  change lowercase letters at beginning of sentences to uppercase ones
  * =====================================================================================
  */
-void FixCapitalization()
+void FixCapitalization(const char* NewUserStr)
 {
-return;
+    int i;
+
+    for( i = 0; i < strlen(NewUserStr); ++i)
+    {
+        if( NewUserStr[i] == '.')
+        {
+           // NewUserStr[i+1] == toupper(NewUserStr[i+1]);
+             printf("Edited text: %d\n",toupper(NewUserStr[i+1]));
+        }
+    }
+  //  printf("Edited text: %s\n",toupper NewUserStr[i+1]));
+
+    return;
 }
 
 
@@ -151,9 +184,21 @@ return;
  *  Description:  replaces each ! with a .
  * =====================================================================================
  */
-void ReplaceExclamation()
+char ReplaceExclamation(char* userStr)
 {
-return;
+    int i;
+   // char NewStr;
+
+    for ( i = 0; i < strlen(userStr); ++i)
+    {
+        if (userStr[i] == '!')
+        {
+            userStr[i] = '.';
+        }
+    }
+   // NewStr = &userStr;
+
+return userStr;
 }
 
 
