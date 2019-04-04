@@ -18,72 +18,37 @@
  */
 
 #include <iostream>
+#include <iomanip>  //more cout options
+#include <string> // for strings
+#include <vector>  // for vectore "arrays with lots of fetures"
+#include "Movie.h"
 using namespace std;
 //constants and globlas
-class Movie
-{
-// only the member has access to
- private:
-     string title = "";  //data members are private
-     int year = 0;
-
-     //anyone has access to it
-     //member functions are public
- public:
-     // "setters"
-     void set_title(string set_title);
-     void set_year(int set_year);
-     // "getters"
-     string get_title();
-     int get_year();
-
-}; // end of Movie class
 
 // Function Prototypes
 
 // Main Function
 int main(int argc, char* argv[])
 {
-    //create and "object"
-    Movie movie;  // create an "instance" of this class movie
-    //set your values
-   // movie.title = "Batman";  // illegal - no direct access becuase its private
-   movie.set_title("Batman");
-   movie.set_year(2009);
+    cout << "The movie list Program" << endl << endl
+        << "Enter a movie ..." << endl << endl;
+    // Get movies from the user
+//    Movie movies[10]; //array of 10 movies fixed to that size 10 spots
+    vector<Movie> movies;  //define a vector of movies. Grow on demand
+    char another = 'y';
+    // Loop for entries
+    while(tolower(another) == 'y')
+    {
+        cout << endl << "Enter another movie? [y/n]: ";
+        cin >> another;
+        cin.ignore();  // ignore anything else in the buffer
+        cout << endl;
+    }// end of while looop
 
-   cout << "MOVIE DATA" << endl
-       << "Title " << movie.get_title() << endl
-       << "Year " << movie.get_year() << endl;
-    
 
 
     return 0;
 }
 // Function Definitions
 
-void Movie::set_title(string set_title)
-{
-    title = set_title;
-    return;
-}
 
-
-void Movie::set_year(int set_year)
-{
-    if (set_year < 1888)
-    {
-        throw invalid_argument("Year must be 1888 or later.");
-    }
-    year = set_year;
-    return;
-}
-// Define Getters
-string Movie::get_title()
-{
-    return title;
-}
-
-int Movie::get_year()
-{
-    return year;
-}
