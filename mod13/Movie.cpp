@@ -39,7 +39,7 @@ Movie::Movie(string title, int year, int stars)
 
 Movie::~Movie()
 {
-    cout << "Destorying Object" << endl;
+//    cout << "Destorying Object" << endl;
 }
 //Print info
 void Movie::info()const
