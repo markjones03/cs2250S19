@@ -33,7 +33,9 @@ void display_menu();
 vector<Movie> read_movies_from_file();
 void view_movies(const vector<Movie>& movies);
 void add_movie(vector<Movie>& movies);
+void delete_movie(vector<Movie>& movies);
 Movie get_movie();
+int get_movie_number(const vector<Movie>& movies);
 // Main Function
 int main(int argc, char* argv[])
 {
@@ -54,7 +56,7 @@ int main(int argc, char* argv[])
                 add_movie(movies);
                 break;
             case 'd':
-                // add delete_movie(movies);
+                delete_movie(movies);
                 break;
             case 'x':
                 cout << "Bye!" << endl << endl;
@@ -182,3 +184,30 @@ void add_movie(vector<Movie>& movies)
     }
 }
 
+void delete_movie(vector<Movie>& movies)
+{
+    int number = get_movie_number(movies); // get movie number
+
+    int index = number - 1; // index notation
+    Movie movie = movies[index]; // get a copy of that number
+    movies.erase(movies.begin() + index); //deleting record from vector
+    cout << movie.get_title() << " was deleted.\n\n";
+}
+
+int get_movie_number(const vector<Movie>& movies)
+{
+    unsigned int number;
+    while (true)
+    {
+        cout << "Number: ";
+        cin >> number;
+        if (number > 0 && number <= movies.size())
+        {
+            return number;
+        }
+        else
+        {
+            cout << "Invalid movie number. Try again.\n";
+        }
+    }
+}
