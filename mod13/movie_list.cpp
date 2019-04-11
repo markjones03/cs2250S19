@@ -36,14 +36,30 @@ void view_movies(const vector<Movie>& movies);
 int main(int argc, char* argv[])
 {
     cout << "The Movie List Program\n" << endl;
-    display_menu();
     vector<Movie> movies = read_movies_from_file();
     char command = 'v';
     while(command != 'x')
     {
-        view_movies(movies);
-
-        command = 'x';
+        display_menu();
+        cout << "Command: ";
+        cin >> command;
+        switch(command)
+        {
+            case 'v':
+                view_movies(movies);
+                break;
+            case 'a':
+                // add_movie(movies);
+                break;
+            case 'd':
+                // add delete_movie(movies);
+                break;
+            case 'x':
+                cout << "Bye!" << endl << endl;
+                break;
+            default:
+                cout << "Not a valid command. Please try again." << endl;
+        } // end of switch( command)
     } // end of while loop
     return 0;
 }
@@ -71,10 +87,16 @@ vector<Movie> read_movies_from_file()
                 {
                     stringstream ss(line);  // read the line and cast it as string
                     // Now ready to parse the line
-                    string title;
+                    string title, temp;
                     int year, stars;
-                    getline(ss, title, ',');  //read title until you get a tab "\t"
-                    ss >> year >> stars;       // get year and stars
+                    getline(ss, title, ',');  //read title until you get to coma
+
+                    getline(ss, temp, ','); //read temp until you get a coma
+                    year = stoi(temp); // convert string to integer
+
+                    getline(ss, temp, ',');
+                    stars = stoi(temp);
+                    //ss >> year >> stars;       // get year and stars
 //                cout << title << " " << year " " << stars << "extra" << endl;
 //                create and add movie object to vector
                     movies.push_back(Movie(title, year, stars));
