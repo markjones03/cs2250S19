@@ -32,6 +32,8 @@ const string movie_file = "movies.txt";
 void display_menu();
 vector<Movie> read_movies_from_file();
 void view_movies(const vector<Movie>& movies);
+void add_movie(vector<Movie>& movies);
+Movie get_movie();
 // Main Function
 int main(int argc, char* argv[])
 {
@@ -49,7 +51,7 @@ int main(int argc, char* argv[])
                 view_movies(movies);
                 break;
             case 'a':
-                // add_movie(movies);
+                add_movie(movies);
                 break;
             case 'd':
                 // add delete_movie(movies);
@@ -127,3 +129,56 @@ void view_movies(const vector<Movie>& movies)
     }
     cout << endl;
 }
+
+
+Movie get_movie()
+{
+    string title;
+    cout << "Title: ";
+    cin.ignore(1000, '\n');
+    getline(cin, title);
+
+    int year;
+    cout << "Year: ";
+    cin >> year;
+
+    int stars;
+    cout << "Stars (1-5): ";
+    cin >> stars;
+
+    Movie movie(title, year, stars);
+    return movie;
+}
+
+
+void add_movie(vector<Movie>& movies)
+{
+    Movie movie = get_movie();
+
+    // check if movie already exists
+    bool already_exists = false;
+    for (Movie& m : movies)
+    {
+        // Check if movie record already exists
+        if (m.iequals(movie))
+        {
+            already_exists = true;
+            // Updating the star number
+            m.set_stars(movie.get_stars());
+            break;
+        }
+    }
+
+    if (already_exists)
+    {
+
+        cout << movie.get_title() << " was updated.\n\n";
+        
+    }
+    else
+    {
+        movies.push_back(movie); // add it to list
+        cout << movie.get_title() << " was added.\n\n";
+    }
+}
+

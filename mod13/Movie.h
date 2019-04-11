@@ -29,6 +29,7 @@ class Movie
      string title;  //data members are private
      int year;
      int stars;
+     string to_upper(string);
 
      //anyone has access to it
      //member functions are public
@@ -47,7 +48,9 @@ class Movie
      string get_title() const;
      int get_year() const;
      int get_stars() const;
+     // Others
      void info()const;
+     bool iequals(const Movie&);
 }; // end of Movie class
 
 
