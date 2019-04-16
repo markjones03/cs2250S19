@@ -144,7 +144,27 @@ void List::delete_last()
 }
 
 
+/* 
+ * ===  FUNCTION  ======================================================================
+ *         Name:  delete_position
+ *  Description:  delete by a given position in the list
+ * =====================================================================================
+ */
 void List::delete_position(int pos)
 {
+    node *prev = new node;
+    node *cur = new node;
+    cur = head; // point to first member
+    //Loop over nodes
+    for(int i = 1; i < pos; i++)
+    {
+        prev = cur;
+        cur = cur->next;
+    }
+    // Set new addresses
+    prev->next = cur->next;
+
+    delete cur;
+    // NOTE: TODO: make sure you are within your bounds
     return;
 }
